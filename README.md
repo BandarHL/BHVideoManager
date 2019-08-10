@@ -8,7 +8,7 @@ Video tool manager
 - Merge video with audio.
 
 # Installation
-- First download project files nad move Classes folder to your project
+- First download project files and move Classes folder to your project
 - import header file:
  ``` objective-c
  #import "BHVideoManager.h"
