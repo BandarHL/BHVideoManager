@@ -8,9 +8,11 @@ Video tool manager
 - Merge video with audio.
 
 # Installation
-```shell
-pod 'BHVideoManager'
-```
+- First download project files nad move Classes folder to your project
+- import header file:
+ ``` objective-c
+ #import "BHVideoManager.h"
+ ``` 
 
 # Trim Audio
 
@@ -41,7 +43,7 @@ NSLog(@"Done");
 ```
 
 # Merge video with audio
-``` objecive-c
+``` objective-c
 NSString *documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0];
 NSURL *VideofilePath = [[NSURL fileURLWithPath:documentsDirectoryPath] URLByAppendingPathComponent:@"test2.mp4"];
 NSURL *audioFilePath = [[NSURL fileURLWithPath:documentsDirectoryPath] URLByAppendingPathComponent:@"test.m4a"];
@@ -55,7 +57,7 @@ NSLog(@"Done");
 # Convert Video to audio
 
 - for example i have mp4 file(test2.mp4):
-``` objecive-c
+``` objective-c
 NSString *documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0];
 NSURL *filePath = [[NSURL fileURLWithPath:documentsDirectoryPath] URLByAppendingPathComponent:@"test2.mp4"];
 
@@ -67,7 +69,7 @@ NSLog(@"Done");
 # Convert Audio to Video
 
 - for example i have m4a file(VideoConverted.m4a):
-``` objecive-c
+``` objective-c
 NSString *documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0];
 NSURL *filePath = [[NSURL fileURLWithPath:documentsDirectoryPath] URLByAppendingPathComponent:@"VideoConverted.m4a"];
 
