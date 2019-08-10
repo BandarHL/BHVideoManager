@@ -1,0 +1,28 @@
+{
+  "name": "BHVideoManager",
+  "version": "0.1.0",
+  "summary": "A short description of BHVideoManager.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/BandarHL/BHVideoManager",
+  "authors": {
+    "BandarHelal": "bandarhelal190@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/BandarHL/BHVideoManager.git",
+    "tag": "0.1.0"
+  },
+  "social_media_url": "https://twitter.com/BandarHL",
+  "source_files": "BHVideoManager/Classes/**/*",
+  "frameworks": [
+    "UIKit",
+    "CoreMedia",
+    "AVFoundation",
+    "AVKit"
+  ],
+  "platforms": {
+    "osx": null,
+    "ios": null,
+    "tvos": null,
+    "watchos": null
+  }
+}
