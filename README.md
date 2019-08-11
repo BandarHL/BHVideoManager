@@ -6,6 +6,7 @@ Video tool manager
 - Convert audio to video.
 - Convert video to audio.
 - Merge video with audio.
+- Export video with different quality.
 
 # Installation
 - First download project files and move Classes folder to your project
@@ -13,6 +14,17 @@ Video tool manager
  ``` objective-c
  #import "BHVideoManager.h"
  ``` 
+
+# Export video with different quality
+- for example i have mp4 file(old.mp4 (720p)) i want to convert video quality to 480p:
+```objective-c
+    NSString *documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0];
+    NSURL *filePath = [[NSURL fileURLWithPath:documentsDirectoryPath] URLByAppendingPathComponent:@"old.mp4"];
+    // you can select another quality by typing AVAssetExportPreset and xcode will show you :)
+    [BHVideoManager ExportVideo:filePath WithQuality:AVAssetExportPreset640x480 SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"videoExported" CompletionHandler:^{
+        NSLog(@"Done");
+    }];
+```
 
 # Trim Audio
 
