@@ -147,4 +147,24 @@
     
 }
 
++ (void)ExportVideo:(NSURL *)filePath WithQuality:(NSString *)quality SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(void))handler {
+    
+    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:filePath options:nil];
+    
+    if (![quality containsString:@"AVAssetExportPreset"]) {
+        NSLog(@"please select right quality from (AVAssetExportPreset)");
+    } else {
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:asset presetName:quality];
+        
+        exportSession.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeMake(asset.duration.value, asset.duration.timescale));
+        exportSession.shouldOptimizeForNetworkUse = true;
+        
+        exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+        exportSession.outputURL = [savepath URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4", title]];
+        
+        [exportSession exportAsynchronouslyWithCompletionHandler:handler];
+    }
+    
+}
+
 @end
