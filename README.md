@@ -9,7 +9,7 @@ Video tool manager
 - Export video with different quality.
 
 # Installation
-- First download project files and move Classes folder to your project
+- First download project files and move BHVideoManager folder to your project
 - import header file:
  ``` objective-c
  #import "BHVideoManager.h"
@@ -21,8 +21,12 @@ Video tool manager
     NSString *documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0];
     NSURL *filePath = [[NSURL fileURLWithPath:documentsDirectoryPath] URLByAppendingPathComponent:@"old.mp4"];
     // you can select another quality by typing AVAssetExportPreset and xcode will show you :)
-    [BHVideoManager ExportVideo:filePath WithQuality:AVAssetExportPreset640x480 SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"videoExported" CompletionHandler:^{
-        NSLog(@"Done");
+    [BHVideoManager ExportVideo:filePath WithQuality:AVAssetExportPreset640x480 SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"videoExported" CompletionHandler:^(AVAssetExportSession *exportsession) {
+    if (AVAssetExportSessionStatusFailed == exportsession.status) {
+    NSLog(@"faild:%@", exportsession.error);
+    } else if (AVAssetExportSessionStatusCompleted == exportsession.status) {
+    NSLog(@"Done");
+    }
     }];
 ```
 
@@ -35,8 +39,12 @@ Video tool manager
  
  AVURLAsset *asset = [AVURLAsset URLAssetWithURL:filePath options:nil];
  
- [BHVideoManager TrimAudioWithPath:filePath StartTime:kCMTimeZero EndTime:CMTimeMake(asset.duration.value /2, asset.duration.timescale) SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"test" CompletionHandler:^{
- NSLog(@"done");
+ [BHVideoManager TrimAudioWithPath:filePath StartTime:kCMTimeZero EndTime:CMTimeMake(asset.duration.value /2, asset.duration.timescale) SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"test" CompletionHandler:^(AVAssetExportSession *exportsession) {
+ if (AVAssetExportSessionStatusFailed == exportsession.status) {
+ NSLog(@"faild:%@", exportsession.error);
+ } else if (AVAssetExportSessionStatusCompleted == exportsession.status) {
+ NSLog(@"Done");
+ }
  }];
 ```
 
@@ -49,8 +57,12 @@ NSString *documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(NSDocumen
 NSURL *filePath = [[NSURL fileURLWithPath:documentsDirectoryPath] URLByAppendingPathComponent:@"old.mp4"];
 AVURLAsset *asset = [AVURLAsset URLAssetWithURL:filePath options:nil];
 
-[BHVideoManager TrimVideoWithPath:filePath StartTime:kCMTimeZero EndTime:CMTimeMake(asset.duration.value/2, asset.duration.timescale) SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"test2" CompletionHandler:^{
+[BHVideoManager TrimVideoWithPath:filePath StartTime:kCMTimeZero EndTime:CMTimeMake(asset.duration.value/2, asset.duration.timescale) SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"test2" CompletionHandler:^(AVAssetExportSession *exportsession) {
+if (AVAssetExportSessionStatusFailed == exportsession.status) {
+NSLog(@"faild:%@", exportsession.error);
+} else if (AVAssetExportSessionStatusCompleted == exportsession.status) {
 NSLog(@"Done");
+}
 }];
 ```
 
@@ -60,8 +72,12 @@ NSString *documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(NSDocumen
 NSURL *VideofilePath = [[NSURL fileURLWithPath:documentsDirectoryPath] URLByAppendingPathComponent:@"test2.mp4"];
 NSURL *audioFilePath = [[NSURL fileURLWithPath:documentsDirectoryPath] URLByAppendingPathComponent:@"test.m4a"];
 
-[BHVideoManager MergeVideo:VideofilePath WithAudio:audioFilePath SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"VideoMerged" CompletionHandler:^{
+[BHVideoManager MergeVideo:VideofilePath WithAudio:audioFilePath SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"VideoMerged" CompletionHandler:^(AVAssetExportSession *exportsession) {
+if (AVAssetExportSessionStatusFailed == exportsession.status) {
+NSLog(@"faild:%@", exportsession.error);
+} else if (AVAssetExportSessionStatusCompleted == exportsession.status) {
 NSLog(@"Done");
+}
 }];
 ```
 
@@ -73,8 +89,12 @@ NSLog(@"Done");
 NSString *documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0];
 NSURL *filePath = [[NSURL fileURLWithPath:documentsDirectoryPath] URLByAppendingPathComponent:@"test2.mp4"];
 
-[BHVideoManager ConvertVideoToAudioWithPath:filePath SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"VideoConverted" CompletionHandler:^{
+[BHVideoManager ConvertVideoToAudioWithPath:filePath SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"VideoConverted" CompletionHandler:^(AVAssetExportSession *exportsession) {
+if (AVAssetExportSessionStatusFailed == exportsession.status) {
+NSLog(@"faild:%@", exportsession.error);
+} else if (AVAssetExportSessionStatusCompleted == exportsession.status) {
 NSLog(@"Done");
+}
 }];
 ```
 
@@ -85,7 +105,11 @@ NSLog(@"Done");
 NSString *documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0];
 NSURL *filePath = [[NSURL fileURLWithPath:documentsDirectoryPath] URLByAppendingPathComponent:@"VideoConverted.m4a"];
 
-[BHVideoManager ConvertAudioToVideoWithPath:filePath SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"AudioConverted" CompletionHandler:^{
+[BHVideoManager ConvertAudioToVideoWithPath:filePath SaveFileToPath:[NSURL fileURLWithPath:documentsDirectoryPath] TitleFile:@"AudioConverted" CompletionHandler:^(AVAssetExportSession *exportsession) {
+if (AVAssetExportSessionStatusFailed == exportsession.status) {
+NSLog(@"faild:%@", exportsession.error);
+} else if (AVAssetExportSessionStatusCompleted == exportsession.status) {
 NSLog(@"Done");
+}
 }];
 ```

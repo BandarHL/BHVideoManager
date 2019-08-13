@@ -10,7 +10,7 @@
 
 @implementation BHVideoManager
 
-+ (void)TrimVideoWithPath:(NSURL *)filepath StartTime:(CMTime)sTime EndTime:(CMTime)eTime SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(void))handler {
++ (void)TrimVideoWithPath:(NSURL *)filepath StartTime:(CMTime)sTime EndTime:(CMTime)eTime SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(AVAssetExportSession *exportsession))handler {
     
     AVURLAsset *asset = [AVURLAsset URLAssetWithURL:filepath options:nil];
     
@@ -26,11 +26,13 @@
     
     exportSession.timeRange = range;
     
-    [exportSession exportAsynchronouslyWithCompletionHandler:handler];
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+        handler(exportSession);
+    }];
     
 }
 
-+ (void)TrimAudioWithPath:(NSURL *)filepath StartTime:(CMTime)sTime EndTime:(CMTime)eTime SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(void))handler {
++ (void)TrimAudioWithPath:(NSURL *)filepath StartTime:(CMTime)sTime EndTime:(CMTime)eTime SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(AVAssetExportSession *exportsession))handler {
     
     AVMutableComposition *newAudioAsset = [AVMutableComposition composition];
     AVMutableCompositionTrack *dstCompositionTrack;
@@ -54,11 +56,13 @@
     exportSession.outputURL = [savepath URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.m4a", title]];
     
     
-    [exportSession exportAsynchronouslyWithCompletionHandler:handler];
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+        handler(exportSession);
+    }];
     
 }
 
-+ (void)MergeVideo:(NSURL *)vURL WithAudio:(NSURL *)aURL SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(void))handler {
++ (void)MergeVideo:(NSURL *)vURL WithAudio:(NSURL *)aURL SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(AVAssetExportSession *exportsession))handler {
     
 //    NSString *documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0];
     
@@ -81,10 +85,12 @@
     exportSession.outputURL = [savepath URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",title]];
     exportSession.shouldOptimizeForNetworkUse = YES;
     
-    [exportSession exportAsynchronouslyWithCompletionHandler:handler];
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+        handler(exportSession);
+    }];
 }
 
-+ (void)ConvertVideoToAudioWithPath:(NSURL *)filePath SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(void))handler {
++ (void)ConvertVideoToAudioWithPath:(NSURL *)filePath SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(AVAssetExportSession *exportsession))handler {
     
     AVMutableComposition *newAudioAsset = [AVMutableComposition composition];
     
@@ -112,11 +118,13 @@
     exportSession.outputURL = [savepath URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.m4a", title]];
     
     
-    [exportSession exportAsynchronouslyWithCompletionHandler:handler];
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+        handler(exportSession);
+    }];
     
 }
 
-+ (void)ConvertAudioToVideoWithPath:(NSURL *)filePath SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(void))handler {
++ (void)ConvertAudioToVideoWithPath:(NSURL *)filePath SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(AVAssetExportSession *exportsession))handler {
     AVMutableComposition *newAudioAsset = [AVMutableComposition composition];
     
     AVMutableCompositionTrack *dstCompositionTrack;
@@ -143,11 +151,13 @@
     exportSession.outputURL = [savepath URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4", title]];
     
     
-    [exportSession exportAsynchronouslyWithCompletionHandler:handler];
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+        handler(exportSession);
+    }];
     
 }
 
-+ (void)ExportVideo:(NSURL *)filePath WithQuality:(NSString *)quality SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(void))handler {
++ (void)ExportVideo:(NSURL *)filePath WithQuality:(NSString *)quality SaveFileToPath:(NSURL *)savepath TitleFile:(NSString *)title CompletionHandler:(void (^)(AVAssetExportSession *exportsession))handler {
     
     AVURLAsset *asset = [AVURLAsset URLAssetWithURL:filePath options:nil];
     
@@ -162,7 +172,9 @@
         exportSession.outputFileType = AVFileTypeQuickTimeMovie;
         exportSession.outputURL = [savepath URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4", title]];
         
-        [exportSession exportAsynchronouslyWithCompletionHandler:handler];
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            handler(exportSession);
+        }];
     }
     
 }
