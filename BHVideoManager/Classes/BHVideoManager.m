@@ -148,6 +148,7 @@
     AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:newAudioAsset presetName:AVAssetExportPresetPassthrough];
     
     exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+    exportSession.shouldOptimizeForNetworkUse = true;
     exportSession.outputURL = [savepath URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4", title]];
     
     
