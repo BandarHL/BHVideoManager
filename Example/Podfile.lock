@@ -1,0 +1,16 @@
+PODS:
+  - BHVideoManager (0.1.0)
+
+DEPENDENCIES:
+  - BHVideoManager (from `../`)
+
+EXTERNAL SOURCES:
+  BHVideoManager:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BHVideoManager: cf0aba365812b9fb98d15a8eb0c951eec97469d7
+
+PODFILE CHECKSUM: 64b08edf3e64359929b805da53f64dd7af53497b
+
+COCOAPODS: 1.7.5

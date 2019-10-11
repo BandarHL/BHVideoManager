@@ -1,0 +1,22 @@
+{
+  "name": "BHVideoManager",
+  "version": "0.1.0",
+  "summary": "A short description of BHVideoManager.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/BandarHL/BHVideoManager",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "BandarHL": "bandarhl"
+  },
+  "source": {
+    "git": "https://github.com/BandarHL/BHVideoManager.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "BHVideoManager/Classes/**/*"
+}

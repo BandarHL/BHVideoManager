@@ -1,3 +1,9 @@
+
+[![CI Status](https://img.shields.io/travis/BandarHL/BHVideoManager.svg?style=flat)](https://travis-ci.org/BandarHL/BHVideoManager)
+[![Version](https://img.shields.io/cocoapods/v/BHVideoManager.svg?style=flat)](https://cocoapods.org/pods/BHVideoManager)
+[![License](https://img.shields.io/cocoapods/l/BHVideoManager.svg?style=flat)](https://cocoapods.org/pods/BHVideoManager)
+[![Platform](https://img.shields.io/cocoapods/p/BHVideoManager.svg?style=flat)](https://cocoapods.org/pods/BHVideoManager)
+
 # BHVideoManager
 Video tool manager
 
@@ -7,13 +13,6 @@ Video tool manager
 - Convert video to audio.
 - Merge video with audio.
 - Export video with different quality.
-
-# Installation
-- First download project files and move BHVideoManager folder to your project
-- import header file:
- ``` objective-c
- #import "BHVideoManager.h"
- ``` 
 
 # Export video with different quality
 - for example i have mp4 file(old.mp4 (720p)) i want to convert video quality to 480p:
@@ -113,3 +112,25 @@ NSLog(@"Done");
 }
 }];
 ```
+## Example
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Requirements
+
+## Installation
+
+BHVideoManager is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'BHVideoManager'
+```
+
+## Author
+
+BandarHL, bandarhl
+
+## License
+
+BHVideoManager is available under the MIT license. See the LICENSE file for more info.
