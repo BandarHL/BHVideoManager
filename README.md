@@ -7,7 +7,7 @@
 # BHVideoManager
 Video tool manager
 
-# Future:
+# Features:
 - Trim video or audio.
 - Convert audio to video.
 - Convert video to audio.
